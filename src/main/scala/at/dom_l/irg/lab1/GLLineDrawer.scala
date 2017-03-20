@@ -41,8 +41,8 @@ class GLLineDrawer(x1: Int, y1: Int, x2: Int, y2: Int) extends LineDrawer {
     override def draw(gl2: GL2, width: Int, height: Int) = {
         gl2.lines {
             gl2.glColor3f(1.0f, 1.0f, 1.0f)
-            gl2.glVertex2f(xs, ys + 20.0f)
-            gl2.glVertex2f(xe, ye + 20.0f)
+            gl2.glVertex2f(xs, height - ys + 20.0f)
+            gl2.glVertex2f(xe, height - ye + 20.0f)
         }
     }
 }

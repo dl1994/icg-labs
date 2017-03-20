@@ -36,16 +36,16 @@ public class LineDrawerMouseHandler implements MouseMotionListener, MouseListene
         DRAW_INITIAL((drawers, mouseEvent) -> drawers.forEach(
                 drawer -> {
                     drawer.xs_$eq(mouseEvent.getX());
-                    drawer.ys_$eq(480 - mouseEvent.getY());
+                    drawer.ys_$eq(mouseEvent.getY());
                 }), (drawers, mouseEvent) -> {}),
         FIRST_POINT((drawers, mouseEvent) -> drawers.forEach(
                 drawer -> {
                     drawer.xe_$eq(mouseEvent.getX());
-                    drawer.ye_$eq(480 - mouseEvent.getY());
+                    drawer.ye_$eq(mouseEvent.getY());
                 }), (drawers, mouseEvent) -> drawers.forEach(
                 drawer -> {
                     drawer.xe_$eq(mouseEvent.getX());
-                    drawer.ye_$eq(480 - mouseEvent.getY());
+                    drawer.ye_$eq(mouseEvent.getY());
                 })),
         SECOND_POINT((drawers, mouseEvent) -> drawers.forEach(LineDrawer::reset),
                 (drawers, mouseEvent) -> {});

@@ -40,17 +40,15 @@ class BresenhamDrawer(x1: Int, y1: Int, x2: Int, y2: Int) extends LineDrawer {
 
     override def draw(gl2: GL2, width: Int, height: Int) = {
         if (xs <= xe) {
-            draw(gl2, xs, ys, xe, ye)
+            draw(gl2, xs, height - ys, xe, height - ye)
         } else {
-            draw(gl2, xe, ye, xs, ys)
+            draw(gl2, xe, height - ye, xs, height - ys)
         }
     }
 
     private def draw(gl2: GL2, xStart: Int, yStart: Int, xEnd: Int, yEnd: Int) = {
         var drawFunction: (Int, Int) => Unit = gl2.glVertex2f(_, _)
-        var errorChecker: Int => Boolean = {
-            _ >= 0
-        }
+        var errorChecker: Int => Boolean = { _ >= 0 }
         var correction = -2 * (xEnd - xStart)
         var stepChange = 1
         var step = 2 * (yEnd - yStart)
