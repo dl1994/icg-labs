@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>at.dom_l</groupId>
-    <artifactId>irg-lab</artifactId>
+    <artifactId>icg-labs</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>IRG Lab</name>
-    <url>https://github.com/dl1994/irg-lab</url>
+    <name>ICG Labs</name>
+    <url>https://github.com/dl1994/icg-lab</url>
     <description>Laboratory exercises for subject "Interactive Computer Graphics"</description>
 
     <developers>
