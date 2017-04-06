@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE   *
  * SOFTWARE.                                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-package at.dom_l.irg.lab1
+package at.dom_l.irg.lab2
 
-import at.dom_l.irg.common.{Matrix, Vect}
-import scala.io.StdIn
+import at.dom_l.irg.common.{GLContext, Vect}
+import scala.io.{Source, StdIn}
 
-object Task3 {
+object Task2 {
 
     private def check(input: String) = {
         val split = input.trim
@@ -41,40 +41,38 @@ object Task3 {
         Vect(split.map(_.toDouble): _*)
     }
 
+    private def reducePointPosition(a: Double, b: Double) = {
+        if (a > 0.0 || b > 0.0) {
+            1.0
+        } else if (a == 0.0 || b == 0.0) {
+            0.0
+        } else {
+            -1.0
+        }
+    }
+
     def main(args: Array[String]) {
-        println("Input data for triangle points:")
-        print("First triangle point: ")
+        print("Input file name: ")
 
-        val first = check(StdIn.readLine())
+        val source = Source.fromFile(StdIn.readLine())
+        val glObject = new GLObject(source)
 
-        print("Second triangle point: ")
-
-        val second = check(StdIn.readLine())
-
-        print("Third triangle point: ")
-
-        val third = check(StdIn.readLine())
-
-        println()
-        println("          A = " + first)
-        println("Triangle: B = " + second)
-        println("          C = " + third)
-        println()
-        println("Input data for a single point: ")
+        print("Input 3D point coordinates: ")
 
         val point = check(StdIn.readLine())
-        val solution = (Matrix.fromVectors(
-            first,
-            second,
-            third
-        ) ^- 1) * point.toColMatrix
-        val solutionStrings = solution.toString.split("\n")
+        val pointPosition = glObject.pointPositions(point).reduce(reducePointPosition)
 
-        println()
-        println("          ┌    ┐   " + solutionStrings(0))
-        println("          │ t₁ │   " + solutionStrings(1))
-        println("Solution: │ t₂ │ = " + solutionStrings(2))
-        println("          │ t₃ │   " + solutionStrings(3))
-        println("          └    ┘   " + solutionStrings(4))
+        println("Point is " + (if (pointPosition == 0.0) {
+            "on the edge"
+        } else if (pointPosition < 0.0) {
+            "inside"
+        } else {
+            "outside"
+        }) + " of the object.")
+
+        val context = new GLContext()
+
+        context.addDrawer(glObject)
+        context.start()
     }
 }

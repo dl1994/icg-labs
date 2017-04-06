@@ -21,60 +21,74 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE   *
  * SOFTWARE.                                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-package at.dom_l.irg.lab1
+package at.dom_l.irg.lab2
 
-import at.dom_l.irg.common.{Matrix, Vect}
+import at.dom_l.irg.common.{GLContext, Vect}
 import scala.io.StdIn
 
-object Task3 {
+object Task1 {
 
     private def check(input: String) = {
         val split = input.trim
             .split(",")
             .map(_.trim)
 
-        if (split.length != 3) {
-            println("3 values are expected!")
+        if (split.length != 2) {
+            println("2 values are expected!")
             System.exit(1)
         }
 
         Vect(split.map(_.toDouble): _*)
     }
 
+    private def reducePointPosition(a: Double, b: Double) = {
+        if (a > 0.0 || b > 0.0) {
+            1.0
+        } else if (a == 0.0 || b == 0.0) {
+            0.0
+        } else {
+            -1.0
+        }
+    }
+
     def main(args: Array[String]) {
-        println("Input data for triangle points:")
-        print("First triangle point: ")
+        print("Number of polygon points: ")
 
-        val first = check(StdIn.readLine())
+        val numPoints = StdIn.readInt()
+        val points = new Array[Vect](numPoints)
 
-        print("Second triangle point: ")
+        for (i <- 0 until numPoints) {
+            print("Input point: ")
+            points(i) = check(StdIn.readLine())
+        }
 
-        val second = check(StdIn.readLine())
+        val context = new GLContext()
+        val lineLoopDrawer = new LineLoopDrawer(points)
+        val linePolygonDrawer = new LinePolygonDrawer(points)
 
-        print("Third triangle point: ")
+        context.addDrawer(lineLoopDrawer)
+        context.addDrawer(linePolygonDrawer)
+        context.start()
 
-        val third = check(StdIn.readLine())
+        val coefficients = linePolygonDrawer.coefficients
 
-        println()
-        println("          A = " + first)
-        println("Triangle: B = " + second)
-        println("          C = " + third)
-        println()
-        println("Input data for a single point: ")
+        print("Input coordinates of a point: ")
 
         val point = check(StdIn.readLine())
-        val solution = (Matrix.fromVectors(
-            first,
-            second,
-            third
-        ) ^- 1) * point.toColMatrix
-        val solutionStrings = solution.toString.split("\n")
+        val pointPositions = for (i <- 0 until numPoints) yield {
+            (point(0) * coefficients(i)(0) + point(1) * coefficients(i)(1) + coefficients(i)(2))
+        }
 
-        println()
-        println("          ┌    ┐   " + solutionStrings(0))
-        println("          │ t₁ │   " + solutionStrings(1))
-        println("Solution: │ t₂ │ = " + solutionStrings(2))
-        println("          │ t₃ │   " + solutionStrings(3))
-        println("          └    ┘   " + solutionStrings(4))
+        val pointPosition = pointPositions.reduce(reducePointPosition)
+
+        println("Point is " + (if (pointPosition == 0.0) {
+            "on the edge"
+        } else if (pointPosition < 0.0) {
+            "inside"
+        } else {
+            "outside"
+        }) + " of the polygon.")
+
+        linePolygonDrawer.enable()
     }
 }

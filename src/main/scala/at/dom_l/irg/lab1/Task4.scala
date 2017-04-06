@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * The MIT License (MIT)                                                           *
  *                                                                                 *
- * Copyright © 2017 Domagoj Latečki                                             *
+ * Copyright © 2017 Domagoj Latečki                                                *
  *                                                                                 *
  * Permission is hereby granted, free of charge, to any person obtaining a copy    *
  * of this software and associated documentation files (the "Software"), to deal   *
@@ -66,24 +66,6 @@ object Task4 {
         context.addMouseMotionListener(mouseHandler)
         context.addDrawer(bresenhamDrawer)
         context.addDrawer(glLineDrawer)
-
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 150, 100))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 150, 150))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 100, 150))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 50, 150))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 50, 100))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 150, 50))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 100, 50))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 50, 50))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 150, 125))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 125, 150))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 150, 75))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 125, 50))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 75, 50))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 50, 75))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 75, 150))
-        //        context.addDrawer(new BresenhamDrawer(100, 100, 50, 125))
-
         context.start()
     }
 }

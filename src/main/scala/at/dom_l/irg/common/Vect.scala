@@ -32,6 +32,8 @@ class Vect(v: RealVector) {
 
     private def this(elements: Double*) = this(new ArrayRealVector(Array(elements: _*)))
 
+    def apply(index: Int) = v.getEntry(index)
+
     private def binaryOperation(other: Vect, action: RealVector => RealVector) = {
         new Vect(action(other.vector))
     }

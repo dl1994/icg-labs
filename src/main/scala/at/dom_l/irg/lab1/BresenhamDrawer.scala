@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * The MIT License (MIT)                                                           *
  *                                                                                 *
- * Copyright © 2017 Domagoj Latečki                                             *
+ * Copyright © 2017 Domagoj Latečki                                                *
  *                                                                                 *
  * Permission is hereby granted, free of charge, to any person obtaining a copy    *
  * of this software and associated documentation files (the "Software"), to deal   *
@@ -24,7 +24,6 @@
 package at.dom_l.irg.lab1
 
 import at.dom_l.irg.common.GLUtils.GL2Extender
-import at.dom_l.irg.common.GLDrawer
 import com.jogamp.opengl.GL2
 
 class BresenhamDrawer(x1: Int, y1: Int, x2: Int, y2: Int) extends LineDrawer {
