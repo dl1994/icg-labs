@@ -1,4 +1,4 @@
-package at.dom_l.irg.lab1;
+package at.doml.irg.lab1;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

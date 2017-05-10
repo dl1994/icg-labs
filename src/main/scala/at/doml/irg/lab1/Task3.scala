@@ -1,6 +1,7 @@
-package at.dom_l.irg.lab1
+package at.doml.irg.lab1
 
-import at.dom_l.irg.common.{Matrix, Vect}
+import at.dom_l.irg.common.Vect
+import at.doml.irg.common.{Matrix, Vect}
 import scala.io.StdIn
 
 object Task3 {

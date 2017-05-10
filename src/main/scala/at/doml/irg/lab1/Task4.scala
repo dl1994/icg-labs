@@ -1,6 +1,6 @@
-package at.dom_l.irg.lab1
+package at.doml.irg.lab1
 
-import at.dom_l.irg.common.GLContext
+import at.doml.irg.common.GLContext
 import scala.io.StdIn
 
 object Task4 {

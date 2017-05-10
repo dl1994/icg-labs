@@ -1,6 +1,7 @@
-package at.dom_l.irg.lab2
+package at.doml.irg.lab2
 
-import at.dom_l.irg.common.{GLContext, Vect}
+import at.dom_l.irg.common.Vect
+import at.doml.irg.common.{GLContext, Vect}
 import scala.io.StdIn
 
 object Task1 {

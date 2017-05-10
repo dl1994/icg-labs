@@ -1,4 +1,4 @@
-package at.dom_l.irg.common
+package at.doml.irg.common
 
 import java.text.DecimalFormat
 import org.apache.commons.math3.linear.{ArrayRealVector, RealVector}

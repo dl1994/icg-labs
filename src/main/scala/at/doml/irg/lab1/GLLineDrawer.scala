@@ -1,6 +1,6 @@
-package at.dom_l.irg.lab1
+package at.doml.irg.lab1
 
-import at.dom_l.irg.common.GLUtils.GL2Extender
+import at.doml.irg.common.GLUtils.GL2Extender
 import com.jogamp.opengl.GL2
 
 class GLLineDrawer(x1: Int, y1: Int, x2: Int, y2: Int) extends LineDrawer {
