@@ -1,7 +1,6 @@
 package at.doml.irg.lab2
 
-import at.dom_l.irg.common.{GLDrawer, Vect}
-import at.dom_l.irg.common.GLUtils.GL2Extender
+import at.doml.irg.common.GLUtils.GL2Extender
 import at.doml.irg.common.{GLDrawer, Vect}
 import com.jogamp.opengl.GL2
 

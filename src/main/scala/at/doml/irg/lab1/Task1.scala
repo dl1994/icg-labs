@@ -1,6 +1,5 @@
 package at.doml.irg.lab1
 
-import at.dom_l.irg.common.Vect
 import at.doml.irg.common.{Matrix, Vect}
 
 object Task1 {

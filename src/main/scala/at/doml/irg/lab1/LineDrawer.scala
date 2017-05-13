@@ -1,6 +1,5 @@
 package at.doml.irg.lab1
 
-import at.dom_l.irg.common.GLDrawer
 import at.doml.irg.common.GLDrawer
 
 trait LineDrawer extends GLDrawer {
