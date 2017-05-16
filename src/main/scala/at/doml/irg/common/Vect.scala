@@ -80,6 +80,8 @@ class Vect(v: RealVector) {
     def toArray = this.vector.toArray
 
     def toColMatrix = Matrix(this.vector.toArray.map(Array(_)): _*)
+
+    def toRowMatrix = Matrix(this.vector.toArray)
 }
 
 object Vect {

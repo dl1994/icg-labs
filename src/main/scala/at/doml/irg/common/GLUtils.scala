@@ -16,6 +16,8 @@ object GLUtils {
 
         def lineLoop(function: => Unit) = scopedGLDraw(GL.GL_LINE_LOOP, function)
 
+        def lineStrip(function: => Unit) = scopedGLDraw(GL.GL_LINE_STRIP, function)
+
         def points(function: => Unit) = scopedGLDraw(GL.GL_POINTS, function)
     }
 }

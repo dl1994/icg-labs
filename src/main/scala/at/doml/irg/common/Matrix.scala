@@ -7,6 +7,8 @@ class Matrix(m: RealMatrix) {
 
     private val matrix = m
 
+    def apply(row: Int)(col: Int) = m.getEntry(row, col)
+
     private def this(values: Array[Double]*) = this(new Array2DRowRealMatrix(Array(values: _*)))
 
     private def binaryOperation(other: Matrix, action: RealMatrix => RealMatrix) = {

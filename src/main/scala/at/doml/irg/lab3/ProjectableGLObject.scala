@@ -1,12 +1,12 @@
-package at.doml.irg.lab2
+package at.doml.irg.lab3
 
 import at.doml.irg.common.GLUtils.GL2Extender
-import at.doml.irg.common.{GLDrawer, Vect}
+import at.doml.irg.common.{GLDrawer, Matrix, Vect}
 import com.jogamp.opengl.GL2
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
-class GLObject(source: Source) extends GLDrawer {
+class ProjectableGLObject(source: Source, transformation: Matrix) extends GLDrawer {
 
     private val faces = ListBuffer[Array[Int]]()
     private val vertices = ListBuffer[Vect]()
@@ -26,29 +26,14 @@ class GLObject(source: Source) extends GLDrawer {
         }
     }
 
-    private val facePlaneCoefficients = for (face <- this.faces) yield {
-        val x = 0
-        val y = 1
-        val z = 2
-        val v1 = this.vertices(face(0))
-        val v2 = this.vertices(face(1))
-        val v3 = this.vertices(face(2))
-
-        val a = (v2(y) - v1(y)) * (v3(z) - v1(z)) - (v2(z) - v1(z)) * (v3(y) - v1(y))
-        val b = (v2(z) - v1(z)) * (v3(x) - v1(x)) - (v2(x) - v1(x)) * (v3(z) - v1(z))
-        val c = (v2(x) - v1(x)) * (v3(y) - v1(y)) - (v2(y) - v1(y)) * (v3(x) - v1(x))
-        val d = -v1(x) * a - v1(y) * b - v1(z) * c
-
-        (a, b, c, d)
-    }
-
     protected val points = {
         val nonNormalizedPoints = for {
             face <- this.faces
             vertexIndex <- face
             vertex = this.vertices(vertexIndex)
         } yield {
-            (vertex(0), vertex(1), vertex(2))
+            val p = Vect(vertex(0), vertex(1), vertex(2), 1).toRowMatrix * transformation
+            (p(0)(0) / p(0)(3), p(0)(1) / p(0)(3), p(0)(2) / p(0)(3))
         }
 
         val xMax = nonNormalizedPoints.map(_._1).max
@@ -67,17 +52,11 @@ class GLObject(source: Source) extends GLDrawer {
         }
     }
 
-    def pointPositions(point: Vect) = {
-        for (coefficients <- this.facePlaneCoefficients) yield {
-            point(0) * coefficients._1 + point(1) * coefficients._2 + point(2) * coefficients._3 + coefficients._4
-        }
-    }
-
     override def draw(gl2: GL2, width: Int, height: Int) = {
-        gl2.lines {
+        gl2.lineLoop {
             gl2.glColor3f(1.0f, 1.0f, 1.0f)
 
-            val scale = (width min height) * 0.45
+            val scale = (width min height) * 0.025
             val xOffset = width / 2.0
             val yOffset = height / 2.0
 
