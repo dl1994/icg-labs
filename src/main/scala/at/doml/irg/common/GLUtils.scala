@@ -19,5 +19,7 @@ object GLUtils {
         def lineStrip(function: => Unit) = scopedGLDraw(GL.GL_LINE_STRIP, function)
 
         def points(function: => Unit) = scopedGLDraw(GL.GL_POINTS, function)
+
+        def triangles(function: => Unit) = scopedGLDraw(GL.GL_TRIANGLES, function)
     }
 }

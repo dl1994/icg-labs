@@ -73,6 +73,8 @@ class Vect(v: RealVector) {
         )
     }
 
+    def cos(other: Vect) = this.vector.dotProduct(other.vector)
+
     def unary_- = new Vect(this.vector.mapMultiply(-1.0))
 
     def norm = this.vector.getNorm
